@@ -60,7 +60,7 @@ How to Get Started:
 Just do a search as you would do on Google Scholar.
 
 Customer Quote:
-"I earned a few second each time I wanted to read an open access article, at the end of the week, I may have earned half an hour"
+"I earned a few second each time I wanted to read an open access article, at the end of the week, I may have earned half an hour."
 
 
 
