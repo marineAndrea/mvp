@@ -13,9 +13,14 @@ strVar += "<\/div><div class=\"gs_fl\"><a href=\"\/scholar?cites=365979131437646
 strVar += "";
 
 var html = strVar;
+
 var $ = cheerio.load(html);
 $('.gs_md_wp.gs_ttss').each(function(i, el) {
   links.push({link:$(el).children().attr("href")});
+});
+
+$('.gs_ggsS').each(function(i, el) {
+  links.push({title:$(el)});
 });
 
 console.log(links);
