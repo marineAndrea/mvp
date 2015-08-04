@@ -1,6 +1,7 @@
 var http = require('http');
 var fs = require('fs');
-var qs = require('querystring');
+var request = require('request');
+// var qs = require('querystring');
 
 http.createServer(function (request, response) {
   // console.log('server starting...');
@@ -24,7 +25,11 @@ var postHandler = function(request, response) {
     search += chunk;
   });
   request.on("end", function() {
-    console.log('on end', search.split('=')[1]);
+    search = search.split('=')[1]
+    console.log('on end', search);
+    // send request to google scholar
+    requestGoogle(search);
+    // at https://scholar.google.com/scholar?hl=en&q=
   });
 };
 
@@ -39,6 +44,44 @@ var getHandler = function(request, response) {
   });
 };
 
+
+/////////////////////////////// REQUEST GOOGLE ////////////////////////////
+
+var requestGoogle = function(search) {
+  request('https://scholar.google.com/scholar?hl=en&q=' + search, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log(typeof body) // Show the HTML for the Google homepage. 
+    }
+  });
+
+  // console.log('req being send to google');
+  // var url = 'https://scholar.google.com/scholar?hl=en&q=' + search;
+  // console.log('url', url);
+  // if(!url) {
+  //   console.log('oups');
+  // }
+  // request('http://' + url).pipe(fs.createWriteStream(url));
+  // console.log('request done');
+};
+
+
+// readListOfUrls(archive.downloadUrls);
+// readListOfUrls = function(callback){
+//   fs.readFile(exports.paths.list, function(err, sites) {
+//     sites = sites.toString().split('\n');
+//     if( callback ){
+//       callback(sites);
+//     }
+//   });
+// };
+// downloadUrls = function(urls){
+//   // Iterate over urls and pipe to new files
+//   _.each(urls, function(url) {
+//     if(!url){ return; }
+//     request('http://' + url).pipe(fs.createWriteStream(exports.paths.archivedSites + "/" + url));
+//   });
+//   return true;
+// };
 /////////////////////////////// REDIRECT AND SEND RESPONSE ////////////////////////////
 
 var headers = {
