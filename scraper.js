@@ -16,11 +16,9 @@ var html = strVar;
 
 var $ = cheerio.load(html);
 $('.gs_md_wp.gs_ttss').each(function(i, el) {
-  links.push({link:$(el).children().attr("href")});
-});
-
-$('.gs_ggsS').each(function(i, el) {
-  links.push({title:$(el)});
+  var child = $(el).children().children($('span.gs_ggsS')).text();
+  links.push({journal: child});
+  links[i]['link'] = $(el).children().attr("href");
 });
 
 console.log(links);

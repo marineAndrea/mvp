@@ -5,11 +5,6 @@ var fs = require('fs');
 var request = require('request');
 var util = require('util');
 var cheerio = require("cheerio");
-// var q = require('q');
-// var htmlparser = require("htmlparser");
-// var qs = require('querystring');
-// var parser = require('xml2js').parseString;
-//var parser = parseString.Parser();
 
 
 /////////////////////////////// PARSER ////////////////////////////
@@ -30,7 +25,9 @@ strVar += "";
 var html = strVar;
 var $ = cheerio.load(html);
 $('.gs_md_wp.gs_ttss').each(function(i, el) {
-  content.push({link:$(el).children().attr("href")});
+  var child = $(el).children().children($('span.gs_ggsS')).text();
+  content.push({title: child});
+  content[i]['link'] = $(el).children().attr("href");
 });
 
 
@@ -64,7 +61,7 @@ var postHandler = function(request, response) {
     search = search.split('=')[1];
     // send request to google scholar at https://scholar.google.com/scholar?hl=en&q=
     // requestGoogle(search, function() {
-    // write in html fileç
+    // write in html file
     writeContent(content, function() {
       console.log('about to read file');
       fs.readFile('./results.html', function(err, data){
@@ -120,10 +117,19 @@ var deleteContent = function(cb) {
   })
 };
 
+// var modifyContent = function(arr) {
+//   var res = '<ul>';
+//   for (var i = 0; i < arr.length; i++) {
+//     res += '<li><a href=' + arr[i]['link'] + '>title' + (''+(i+1)) + '</a></li>';
+//   }
+//   res += '</ul>';
+//   return res;
+// };
+
 var modifyContent = function(arr) {
   var res = '<ul>';
   for (var i = 0; i < arr.length; i++) {
-    res += '<li><a href=' + arr[i]['link'] + '>title' + (''+(i+1)) + '</a></li>';
+    res += '<li><a href=' + arr[i]['link'] + '>' + (''+arr[i]['title']) + '</a></li>';
   }
   res += '</ul>';
   return res;
