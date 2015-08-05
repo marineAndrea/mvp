@@ -1,6 +1,8 @@
 /////////////////////////////// LIBRARIES ////////////////////////////
 
 var http = require('http');
+var path = require('path');
+var urlParser = require('url');
 var fs = require('fs');
 var request = require('request');
 var util = require('util');
@@ -23,10 +25,13 @@ strVar += "<\/div><div class=\"gs_fl\"><a href=\"\/scholar?cites=365979131437646
 strVar += "";
 
 var html = strVar;
+
 var $ = cheerio.load(html);
 $('.gs_md_wp.gs_ttss').each(function(i, el) {
+  var sibl = $(el).parent().next().children().first().children().first().text();
   var child = $(el).children().children($('span.gs_ggsS')).text();
-  content.push({title: child});
+  content.push({journal: child});
+  content[i]['title'] = sibl;
   content[i]['link'] = $(el).children().attr("href");
 });
 
@@ -35,15 +40,11 @@ $('.gs_md_wp.gs_ttss').each(function(i, el) {
 
 http.createServer(function (request, response) {
   console.log('handling '+ request.method + " request for url: " + request.url);
-  // console.log('server starting...');
   if (request.method === 'POST') {
-    // console.log('post starting...');
     postHandler(request, response);
   } else if (request.method === 'GET') {
-    // console.log('get starting...');
     getHandler(request, response);
   } else {
-    // console.log('404...');
     send404(response);
   }
 }).listen(8080, '127.0.0.1');
@@ -117,21 +118,13 @@ var deleteContent = function(cb) {
   })
 };
 
-// var modifyContent = function(arr) {
-//   var res = '<ul>';
-//   for (var i = 0; i < arr.length; i++) {
-//     res += '<li><a href=' + arr[i]['link'] + '>title' + (''+(i+1)) + '</a></li>';
-//   }
-//   res += '</ul>';
-//   return res;
-// };
-
 var modifyContent = function(arr) {
-  var res = '<ul>';
+  var res = '<body><br><h1>Open Scholar</h1><br><br>';
+  res +=  '<h2>Enter your request to Google Scholar</h2><form method="POST"><input type="text" name="search"></input></form><br><br>'
   for (var i = 0; i < arr.length; i++) {
-    res += '<li><a href=' + arr[i]['link'] + '>' + (''+arr[i]['title']) + '</a></li>';
+    res += '<h3 class="title">' + (''+arr[i]['title']) + '</h3>' + '<a href=' + arr[i]['link'] + '>' + (''+arr[i]['journal']) + '</a><br><br>';
   }
-  res += '</ul>';
+  res += '</body>';
   return res;
 };
 
@@ -156,5 +149,3 @@ var sendResponse = function(response, obj, status){
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////
-
-

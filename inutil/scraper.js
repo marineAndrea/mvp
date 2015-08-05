@@ -16,8 +16,10 @@ var html = strVar;
 
 var $ = cheerio.load(html);
 $('.gs_md_wp.gs_ttss').each(function(i, el) {
+  var sibl = $(el).parent().next().children().first().children().first().text();
   var child = $(el).children().children($('span.gs_ggsS')).text();
   links.push({journal: child});
+  links[i]['title'] = sibl;
   links[i]['link'] = $(el).children().attr("href");
 });
 
