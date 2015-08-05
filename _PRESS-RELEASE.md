@@ -16,9 +16,32 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
 
- This app allows you to do a search request to google scholar and sorts the results by open access links fist and then by number of citations.
-Google scho
- 
+OpenScholar
+The app targets any person interested in learning more about specialized topics or interested in conducting their own research, and more specifically the people that do not have access to the expensive content of privite journals.
+
+Summary:
+This app allows you to do a search request to google scholar and give back the results sorted by open access links fist and then by number of citations.
+The benefit is that the user can view in priority all the articles to which he has access (the ones that have links to the article) instead or having to search through the list of results and possibly have to click next pages to find the first result with a link to the article.
+
+Problem / Solution:
+The app facilitate and promotes the access to open source articles by emphasizing, prioritizing and making more visible the open access content of the resulting page to a search request to Google Scholar.
+
+## Quote from You ##
+  > A quote from a spokesperson in your company.
+
+How to Get Started:
+Just do a search as you would do on Google Scholar.
+
+Customer Quote:
+"I earned a few second each time I wanted to read an open access article, at the end of the week, I may have earned half an hour."
+
+## Closing and Call to Action ##
+  > Wrap it up and give pointers where the reader should go next.
+
+
+
+
+
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
 
@@ -45,29 +68,6 @@ Google scho
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
-
-OpenScholar
-The app targets any person interested in learning more about specialized topics or interested in conducting their own research, and more specifically the people that do not have access to the expensive content of privite journals.
-
-Summary:
-This app allows you to do a search request to google scholar and give back the results sorted by open access links fist and then by number of citations.
-The benefit is that the user can view in priority all the articles to which he has access (the ones that have links to the article) instead or having to search through the list of results and possibly have to click next pages to find the first result with a link to the article.
-
-Problem and Solution:
-The app facilitate and promotes the access to open source articles by emphasizing, prioritizing and making more visible the open access content of the resulting page to a search request to Google Scholar.
-
-How to Get Started:
-Just do a search as you would do on Google Scholar.
-
-Customer Quote:
-"I earned a few second each time I wanted to read an open access article, at the end of the week, I may have earned half an hour."
-
-
-
-
-
-
-
 
 
 
